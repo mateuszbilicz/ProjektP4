@@ -7,14 +7,30 @@
         x:Class="ProjektP4.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="ProjektP4">
-
+        Title="Company Delegations">
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+    <DockPanel>
+        <Rectangle Fill="#aaa" Height="32" DockPanel.Dock="Top"></Rectangle>
+        <DockPanel>
+            <ScrollViewer DockPanel.Dock="Left" Background="#aaa">
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding _menuOptions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Label}"
+                                           PointerPressed="InputElement_OnPointerPressed"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer>
+                <TransitioningContentControl Content="{Binding CurrentPage}"></TransitioningContentControl>
+            </ScrollViewer>
+        </DockPanel>
+    </DockPanel>
 </Window>
