@@ -12,19 +12,60 @@
     <Design.DataContext>
         <views:EmployeesListPageView />
     </Design.DataContext>
-
-    <StackPanel VerticalAlignment="Center" Spacing="5">
-        <TextBlock VerticalAlignment="Center"
-                   TextAlignment="Center"
-                   FontSize="16"
-                   FontWeight="SemiBold"
-                   Text="Employeen pagen worken"
-                   TextWrapping="Wrap" />
-        <TextBlock VerticalAlignment="Center"
-                   TextAlignment="Center"
-                   FontSize="16"
-                   Text="bbbb"
-                   TextWrapping="Wrap" />
+    <StackPanel>
+        <Grid ColumnDefinitions="150,150,100,100"
+              RowDefinitions="Auto"
+              Margin="4">
+            <TextBlock Grid.Column="0" Text="First name"/>
+            <TextBlock Grid.Column="1" Text="Last name"/>
+            <TextBlock Grid.Column="2" Text="Position"/>
+            <TextBlock Grid.Column="3" Text="Options"/>
+        </Grid>
+        <ItemsControl ItemsSource="{Binding _employees}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="150,150,100,100"
+                          RowDefinitions="Auto"
+                          Margin="4">
+                        <TextBlock Grid.Column="0" Text="{Binding FirstName}"/>
+                        <TextBlock Grid.Column="1" Text="{Binding LastName}"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Position}"/>
+                        <Button Grid.Column="3"
+                                Tag="{Binding EmployeeId}"
+                                Click="DeleteEmployee_Click">
+                            Delete
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Grid ColumnDefinitions="150,150,150,100"
+              RowDefinitions="Auto"
+              Margin="4">
+            <TextBlock Grid.Row="0"
+                       Text="Add employee">
+            </TextBlock>
+            <TextBox Grid.Column="0"
+                     Grid.Row="1"
+                     Width="150"
+                     MaxLength="20"
+                     x:Name="_employeeToAddFirstName"/>
+            <TextBox Grid.Column="0"
+                     Grid.Row="1"
+                     Width="150"
+                     MaxLength="20"
+                     x:Name="_employeeToAddLastName"/>
+            <TextBox Grid.Column="0"
+                     Grid.Row="1"
+                     Width="150"
+                     MaxLength="20"
+                     x:Name="_employeeToAddPosition"/>
+            <Button Grid.Column="2"
+                    Grid.Row="0"
+                    Click="AddEmployee_Click">
+                Submit
+            </Button>
+        </Grid>
     </StackPanel>
     
 </UserControl>
