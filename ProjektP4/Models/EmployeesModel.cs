@@ -18,29 +18,16 @@ public class Employees
 public class EmployeesContext : DbContext
 {
     String connectionString = ConfigurationManager.ConnectionStrings["CompanyDelegations"].ConnectionString;
-
     public DbSet<Employees> Employees { get; set; }
 
-    public IEnumerable<Employees> GetFiltered(
-        string filter
-    )
+    public IEnumerable<Employees> GetFiltered(string filter)
     {
         return Employees.Where(e =>
-            (
-                e.firstName.ToLower().Contains(filter.ToLower())
-                || e.lastName.ToLower().Contains(filter.ToLower())
-                || e.position.ToLower().Contains(filter.ToLower())
-            )
-            && e.isActive == true
-        );
+            (e.firstName.ToLower().Contains(filter.ToLower()) || e.lastName.ToLower().Contains(filter.ToLower()) ||
+             e.position.ToLower().Contains(filter.ToLower())) && e.isActive == true);
     }
 
-    public void UpdateEmployee(
-        int employeeId,
-        string firstName,
-        string lastName,
-        string position
-    )
+    public void UpdateEmployee(int employeeId, string firstName, string lastName, string position)
     {
         Employees employee = Employees.Find(employeeId);
         employee.firstName = firstName;
@@ -49,11 +36,7 @@ public class EmployeesContext : DbContext
         SaveChanges();
     }
 
-    public void AddEmployee(
-        string firstName,
-        string lastName,
-        string position
-    )
+    public void AddEmployee(string firstName, string lastName, string position)
     {
         Employees employee = new Employees();
         employee.firstName = firstName;
@@ -64,9 +47,7 @@ public class EmployeesContext : DbContext
         SaveChanges();
     }
 
-    public void DeleteEmployee(
-        int employeeId
-    )
+    public void DeleteEmployee(int employeeId)
     {
         Employees employee = Employees.Find(employeeId);
         employee.isActive = false;
@@ -75,11 +56,9 @@ public class EmployeesContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Employees>(
-            cv => { cv.HasKey(["employeeId"]); }
-        );
+        modelBuilder.Entity<Employees>(cv => { cv.HasKey(["employeeId"]); });
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer(connectionString);
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
+        optionsBuilder.UseSqlServer(connectionString);
 }

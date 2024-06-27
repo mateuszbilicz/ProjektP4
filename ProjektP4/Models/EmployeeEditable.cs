@@ -8,7 +8,7 @@ public class EmployeeEditable : INotifyPropertyChanged
     public string LastName { get; set; }
     public string Position { get; set; }
     public int EmployeeId { get; }
-    
+
     public EmployeeEditable(Employees employee)
     {
         FirstName = employee.firstName;
@@ -17,6 +17,6 @@ public class EmployeeEditable : INotifyPropertyChanged
         EmployeeId = employee.employeeId;
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("FirstName"));
     }
-    
+
     public event PropertyChangedEventHandler? PropertyChanged;
 }

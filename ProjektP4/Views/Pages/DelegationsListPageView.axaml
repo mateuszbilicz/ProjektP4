@@ -3,28 +3,68 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:views="clr-namespace:ProjektP4.Views"
-             d:DesignHeight="450"
-             d:DesignWidth="800"
-             x:CompileBindings="True"
-             x:DataType="views:DelegationsListPageView"
-             mc:Ignorable="d">
+             xmlns:views="clr-namespace:ProjektP4.Views" d:DesignHeight="450" d:DesignWidth="800"
+             x:CompileBindings="True" x:DataType="views:DelegationsListPageView" mc:Ignorable="d">
     <Design.DataContext>
         <views:DelegationsListPageView />
     </Design.DataContext>
-
-    <StackPanel VerticalAlignment="Center" Spacing="5">
-        <TextBlock VerticalAlignment="Center"
-                   TextAlignment="Center"
-                   FontSize="16"
-                   FontWeight="SemiBold"
-                   Text="Delegationen pagen worken"
-                   TextWrapping="Wrap" />
-        <TextBlock VerticalAlignment="Center"
-                   TextAlignment="Center"
-                   FontSize="16"
-                   Text="bbbb"
-                   TextWrapping="Wrap" />
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+        <TextBlock Text="Delegations list" FontSize="24" FontWeight="Bold" />
+        <Grid ColumnDefinitions="200,300,300,150,150,100,100" RowDefinitions="Auto" Margin="4"
+              Name="DelegationListColumnTitles">
+            <Line Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="0"></Line>
+            <TextBlock Grid.Column="0" Text="Purpose" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1" Text="Start date" FontSize="16" FontWeight="SemiBold"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="2" Text="End date" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            <TextBlock Grid.Column="3" Text="From" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            <TextBlock Grid.Column="4" Text="To" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            <TextBlock Grid.Column="5" Text="Max Expense" FontSize="16" FontWeight="SemiBold"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Column="6" Text="Options" FontSize="16" FontWeight="SemiBold" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+        </Grid>
+        <ItemsControl ItemsSource="{Binding _delegations}" Name="DelegationsListItemControl">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="200,300,300,150,150,100,100" RowDefinitions="Auto" Margin="4">
+                        <TextBlock Grid.Column="0" Margin="4" Text="{Binding Purpose}" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="1" Margin="4" Text="{Binding StartDate, StringFormat='dd/MM/yyyy'}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="2" Margin="4" Text="{Binding EndDate, StringFormat='dd/MM/yyyy'}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="3" Margin="4" Text="{Binding DepartuePlace}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="4" Margin="4" Text="{Binding DestinationPlace}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="5" Margin="4" Text="{Binding MaxExpensePerEmployee}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Button Grid.Column="6" Margin="4" Tag="{Binding DelegationId}" Click="DeleteDelegation_Click"
+                                Name="Delete">
+                            Delete
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Grid ColumnDefinitions="200,300,300,150,150,100,100" RowDefinitions="Auto" Margin="4">
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Add delegation" FontSize="16" FontWeight="SemiBold"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBox Grid.Column="0" Margin="4" Width="192" MaxLength="256" x:Name="_purpose" />
+            <DatePicker Grid.Column="1" Margin="4" Width="292" x:Name="_startDate" DayFormat="ddd dd" />
+            <DatePicker Grid.Column="2" Margin="4" Width="292" x:Name="_endDate" DayFormat="ddd dd" />
+            <TextBox Grid.Column="3" Margin="4" Width="142" MaxLength="50" x:Name="_departuePlace" />
+            <TextBox Grid.Column="4" Margin="4" Width="142" MaxLength="50" x:Name="_destinationPlace" />
+            <TextBox Grid.Column="5" Margin="4" Width="92" MaxLength="10" x:Name="_maxExpensePerEmployee" />
+            <Button Grid.Column="6" Margin="4" Click="AddDelegation_Click" Name="Submit"
+                    IsEnabled="{Binding Path=IsSubmitEnabled, Mode=OneWay}">
+                Submit
+            </Button>
+        </Grid>
     </StackPanel>
-    
 </UserControl>

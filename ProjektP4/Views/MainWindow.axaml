@@ -1,32 +1,26 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:ProjektP4.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="ProjektP4.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="Company Delegations">
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ProjektP4.ViewModels" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" d:DesignWidth="800"
+        d:DesignHeight="450" x:Class="ProjektP4.Views.MainWindow" x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico" Title="Company Delegations">
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel />
     </Design.DataContext>
     <DockPanel>
-        <ScrollViewer DockPanel.Dock="Left" Background="#aaa">
-            <StackPanel>
+        <ScrollViewer DockPanel.Dock="Left" Background="#007bff">
+            <StackPanel Background="#007bff">
                 <ItemsControl ItemsSource="{Binding _menuOptions}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Label}"
-                                       PointerPressed="InputElement_OnPointerPressed" />
+                            <Button Padding="8" Foreground="#fff" Name="NavItem" Click="InputElement_OnPointerPressed">
+                                <TextBlock Text="{Binding Label}" Name="NavItemText" />
+                            </Button>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </StackPanel>
         </ScrollViewer>
-        <ScrollViewer>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
             <TransitioningContentControl Content="{Binding CurrentPage}"></TransitioningContentControl>
         </ScrollViewer>
     </DockPanel>

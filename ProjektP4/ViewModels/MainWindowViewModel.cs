@@ -1,11 +1,6 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using DynamicData;
 using ReactiveUI;
-using Avalonia;
-using Avalonia.Input;
 
 namespace ProjektP4.ViewModels;
 
@@ -13,11 +8,12 @@ public class MainWindowViewModel : ViewModelBase
 {
     private MenuOption[] MenuOptions =
     {
+        new MenuOption("Employees", new EmployeesListPageViewModel()),
         new MenuOption("Delegations", new DelegationsListPageViewModel()),
-        new MenuOption("Emplyees", new EmployeesListPageViewModel()),
+        new MenuOption("Expenses", new EmployeeExpensesPageViewModel()),
     };
 
-    public ObservableCollection<MenuOption> _menuOptions {get; set;}
+    public ObservableCollection<MenuOption> _menuOptions { get; set; }
 
     public MainWindowViewModel()
     {
@@ -26,18 +22,16 @@ public class MainWindowViewModel : ViewModelBase
         {
             menuOption.ParentViewModel = this;
         }
+
         _CurrentPage = MenuOptions[0].Page;
     }
 
     private PageViewModelBase _CurrentPage;
-    
+
     public PageViewModelBase CurrentPage
     {
         get { return _CurrentPage; }
-        private set { this.RaiseAndSetIfChanged(ref _CurrentPage, value);
-            /*var loc = new ViewLocator();
-            loc.Build(_CurrentPage);*/
-        }
+        private set { this.RaiseAndSetIfChanged(ref _CurrentPage, value); }
     }
 
     public void SetPage(PageViewModelBase page)

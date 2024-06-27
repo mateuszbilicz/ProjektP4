@@ -1,0 +1,53 @@
+<Styles xmlns="https://github.com/avaloniaui">
+    <Style Selector="Window">
+        <Setter Property="Background" Value="#fff" />
+    </Style>
+    <Style Selector="TextBlock">
+        <Setter Property="FontSize" Value="14" /> <Setter Property="Foreground" Value="#333" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+    <Style Selector="Button">
+        <Setter Property="Background" Value="#007bff" /> <Setter Property="Foreground" Value="#fff" />
+        <Setter Property="Padding" Value="6" /> <Setter Property="CornerRadius" Value="3" />
+    </Style>
+    <Style Selector="Button:PointerOver">
+        <Setter Property="Background" Value="#0053D9" />
+    </Style>
+    <Style Selector="ScrollViewer">
+        <Setter Property="Background" Value="#fff" /> <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style Selector="StackPanel">
+        <Setter Property="Background" Value="#fff" />
+    </Style>
+    <Style Selector="ItemsControl">
+        <Setter Property="Background" Value="#fff" />
+    </Style>
+    <Style Selector="ItemsControl#EmployeesListItemControl">
+        <Setter Property="Background" Value="#fff" />
+    </Style>
+    <Style Selector="Button#NavItem">
+        <Setter Property="Background" Value="#007bff" /> <Setter Property="Padding" Value="6" />
+        <Setter Property="BorderThickness" Value="0" /> <Setter Property="CornerRadius" Value="0" />
+        <Setter Property="Width" Value="100" />
+    </Style>
+    <Style Selector="Button#NavItem:PointerOver">
+        <Setter Property="Background" Value="#0053D9" />
+    </Style>
+    <Style Selector="TextBlock#NavItemText">
+        <Setter Property="Foreground" Value="#fff" />
+    </Style>
+    <Style Selector="Grid">
+        <Setter Property="Background" Value="#fff" />
+    </Style>
+    <Style Selector="TextBox">
+        <Setter Property="Background" Value="#fff" /> <Setter Property="Foreground" Value="#333" />
+        <Setter Property="BorderThickness" Value="1" /> <Setter Property="BorderBrush" Value="#ccc" />
+        <Setter Property="CornerRadius" Value="3" />
+    </Style>
+    <Style Selector="Button#Delete">
+        <Setter Property="Background" Value="Red" /> <Setter Property="Foreground" Value="#fff" />
+    </Style>
+    <Style Selector="Grid#EmployeeListColumnTitles">
+        <Setter Property="Background" Value="#fff" />
+    </Style>
+</Styles>

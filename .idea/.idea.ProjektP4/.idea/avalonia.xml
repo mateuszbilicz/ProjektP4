@@ -4,9 +4,12 @@
     <option name="projectPerEditor">
       <map>
         <entry key="ProjektP4/App.axaml" value="ProjektP4/ProjektP4.csproj" />
+        <entry key="ProjektP4/Styles/MainStyle.axaml" value="ProjektP4/ProjektP4.csproj" />
+        <entry key="ProjektP4/Styles/MainWindow.axaml" value="ProjektP4/ProjektP4.csproj" />
         <entry key="ProjektP4/Views/MainWindow.axaml" value="ProjektP4/ProjektP4.csproj" />
         <entry key="ProjektP4/Views/Pages/DelegationsListPage.axaml" value="ProjektP4/ProjektP4.csproj" />
         <entry key="ProjektP4/Views/Pages/DelegationsListPageView.axaml" value="ProjektP4/ProjektP4.csproj" />
+        <entry key="ProjektP4/Views/Pages/EmployeeExpensesPageView.axaml" value="ProjektP4/ProjektP4.csproj" />
         <entry key="ProjektP4/Views/Pages/EmployeesListPage.axaml" value="ProjektP4/ProjektP4.csproj" />
         <entry key="ProjektP4/Views/Pages/EmployeesListPageView.axaml" value="ProjektP4/ProjektP4.csproj" />
       </map>

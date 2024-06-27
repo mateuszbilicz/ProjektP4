@@ -1,0 +1,75 @@
+<UserControl x:Class="ProjektP4.Views.EmployeeExpensesPageView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:ProjektP4.Views" d:DesignHeight="450" d:DesignWidth="800"
+             x:CompileBindings="True" x:DataType="views:EmployeeExpensesPageView" mc:Ignorable="d">
+    <Design.DataContext>
+        <views:EmployeeExpensesPageView />
+    </Design.DataContext>
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+        <TextBlock Text="Employee expenses" FontSize="24" FontWeight="Bold" />
+        <ComboBox Width="400"
+                  SelectionChanged="_delegationSelect_OnSelectionChanged"
+                  Name="_delegationSelect"/>
+        <TextBlock Text="Delegation information" FontSize="16" FontWeight="SemiBold" Margin="0,20,0,10" />
+        <TextBlock Name="DelegationPurpose" FontSize="14" />
+        <TextBlock Name="DelegationStartDate" FontSize="14" Margin="0,5,0,10" />
+        <TextBlock Name="DelegationEndDate" FontSize="14" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <TextBlock Text="Expenses list" FontSize="16" FontWeight="SemiBold" Margin="0,20,0,10" />
+            <TextBlock Text="Add new expense" FontSize="16" FontWeight="SemiBold" Margin="20,20,0,10" />
+        </StackPanel>
+        <Grid ColumnDefinitions="200,100,100,100,100" RowDefinitions="Auto" Margin="4" Name="ExpenseListColumnTitles">
+            <Line Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="0"></Line>
+            <TextBlock Grid.Column="0" Text="Employee" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1" Text="Amount" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            <TextBlock Grid.Column="2" Text="Currency" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            <TextBlock Grid.Column="3" Text="Type" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+            <TextBlock Grid.Column="4" Text="Options" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+        </Grid>
+        <ItemsControl ItemsSource="{Binding _expenses}" Name="ExpensesListItemControl">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="200,100,100,100,100" RowDefinitions="Auto" Margin="4">
+                        <TextBlock Grid.Column="0" Margin="4" Text="{Binding EmployeeName}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="1" Margin="4" Text="{Binding Cost, StringFormat='N2'}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="2" Margin="4" Text="{Binding CurrencyName}" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="3" Margin="4" Text="{Binding TypeName}" HorizontalAlignment="Center"
+                                   VerticalAlignment="Center" />
+                        <Button Grid.Column="4" Margin="4" Tag="{Binding EmployeeExpenseId}" Click="DeleteExpense_Click"
+                                Name="Delete">
+                            Delete
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Grid ColumnDefinitions="200,100,100,100,100" RowDefinitions="Auto,*" Margin="4">
+            <TextBlock Grid.Row="0" Text="Add expense" FontSize="16" FontWeight="SemiBold"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <ComboBox Grid.Column="0" Margin="4" Grid.Row="1" Width="192"
+                      Name="_employeeSelect"/>
+            <TextBox Grid.Column="1" Margin="4" Grid.Row="1" Width="92" MaxLength="10"
+                     x:Name="_cost" />
+            <ComboBox Grid.Column="2" Margin="4" Grid.Row="1" Width="92"
+                      Name="_currencySelect"/>
+            <ComboBox Grid.Column="3" Margin="4" Grid.Row="1" Width="92"
+                      Name="_expenseTypeSelect"/>
+            <Button Grid.Column="4" Margin="4" Grid.Row="1"
+                    Click="AddExpense_Click" Name="Submit"
+                    IsEnabled="{Binding Path=IsSubmitEnabled, Mode=OneWay}">
+                Submit
+            </Button>
+        </Grid>
+    </StackPanel>
+</UserControl>
